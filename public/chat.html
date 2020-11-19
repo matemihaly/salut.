@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="icon" href="./img/chat-icon.png" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Salut.</title>
+  </head>
+  <body>
+    <audio src="./audio/gemini.mov" id="audio"></audio>
+
+    <div class="centered-form">
+      <div class="chat">
+        <div id="sidebar" class="chat__sidebar"></div>
+
+        <div class="chat__main">
+          <div id="messages" class="chat__messages"></div>
+
+          <div class="compose">
+            <button id="send-location">
+              <i class="fas fa-globe"></i>
+            </button>
+            <form id="message-form">
+              <div class="input__container">
+                <input
+                  name="message"
+                  placeholder="Type a message..."
+                  required
+                  autocomplete="off"
+                />
+                <button id="send-message">
+                  <i id="send-icon" class="fas fa-arrow-circle-up"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script id="message-template" type="text/html">
+      <div class="message">
+        <p>
+          <span class="message__name">{{username}}</span>
+          <span class="message__meta">{{createdAt}}</span>
+        </p>
+        <p class="message__wrapper">{{message}}</p>
+      </div>
+    </script>
+
+    <script id="location-message-template" type="text/html">
+      <div class="message">
+        <p>
+          <span class="message__name">{{username}}</span>
+          <span class="message__meta">{{createdAt}}</span>
+        </p>
+        <p>
+          <a href="{{url}}" target="_blank">Current location</a>
+        </p>
+      </div>
+    </script>
+
+    <script id="sidebar-template" type="text/html">
+      <div class="sidebar-icon__wrapper">
+        <img id="sidebar-icon" src="./img/sidebar-icon.png" alt="chat-icon" />
+      </div>
+      <h2 class="room-title">__room: {{room}}</h2>
+      <h3 class="list-title">Users</h3>
+      <ul class="users">
+        <div class="users__container">
+          {{#users}}
+          <li class="user">
+            <i class="fas fa-circle status"></i>@{{username}}
+          </li>
+          {{/users}}
+        </div>
+      </ul>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/chat.js"></script>
+  </body>
+</html>
